@@ -3,46 +3,38 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rsao-pay <rsao-pay@student.42lisboa.com    +#+  +:+       +#+         #
+#    By: rsao-pay <rsao-pay@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/07 16:35:35 by rsao-pay          #+#    #+#              #
-#    Updated: 2025/11/07 16:49:15 by rsao-pay         ###   ########.fr        #
+#    Updated: 2025/11/11 21:03:27 by rsao-pay         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 		= libftprintf.a
 
-SRC 		= 
+SRC 		= ft_printf.c ft_utils.c ft_utils_2.c
 
 OBJS 		= ${SRC:.c=.o}
 
 CC 			= cc
 RM 			= rm -f
-CFLAGS 		= -Wall -Wextra -Werror
-LIBFTDIR	= ./libft
-LIBFT		= ${LIBFTDIR}/libft.a
+CFLAGS 		= -Wall -Wextra -Werror -I.
 
 %.o: %.c
-	@${CC} ${CFLAGS} ${INCLUDE} -c $< -o $@
-	@echo "Compiling $< ... done!"
+	@${CC} ${CFLAGS} -c $< -o $@
 
-${NAME}: ${LIBFT} ${OBJS}
-	@ar rcs ${NAME} ${OBJS} libft/*.o
+${NAME}: ${OBJS}
+	@ar rcs ${NAME} ${OBJS}
 	@echo "printf compiled"
-
-${LIBFT}:
-	@(MAKE) -C ${LIBFTDIR}
 
 all: ${NAME}
 
 clean:
 	@${RM} ${OBJS}
-	@(MAKE) -C ${LIBFTDIR} clean
 	@echo "cleaning complete"
 
 fclean: clean
 	@${RM} ${NAME}
-	@(MAKE) -C ${LIBFTDIR} fclean
 	@echo "fclean is done"
 
 re: fclean all

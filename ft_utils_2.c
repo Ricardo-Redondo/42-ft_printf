@@ -1,43 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_utils_2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rsao-pay <rsao-pay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/24 11:38:17 by rsao-pay          #+#    #+#             */
-/*   Updated: 2025/11/06 15:19:46 by rsao-pay         ###   ########.fr       */
+/*   Created: 2025/11/11 20:53:19 by rsao-pay          #+#    #+#             */
+/*   Updated: 2025/11/11 21:11:40 by rsao-pay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_putnbr_fd(int n, int fd)
+int	ft_putnbr(long nb)
 {
-	long	nb;
 	char	c;
+	int		count;
 
-	nb = n;
 	if (nb < 0)
 	{
-		ft_putchar_fd('-', fd);
+		ft_putchar('-');
 		nb = -nb;
+		count ++;
 	}
 	if (nb >= 10)
 	{
-		ft_putnbr_fd(nb / 10, fd);
+		count += ft_putnbr_fd(nb / 10);
 	}
 	c = '0' + (nb % 10);
-	ft_putchar_fd(c, fd);
+	count += ft_putchar_fd(c);
+	return (count);
 }
 
-/* int	main(void)
+int	ft_putnbr_unsigned(long n)
 {
-	int fd;
-	fd = open("fd", O_RDWR | O_CREAT, 0644);
-	if (fd == -1)
-		return (1); 
-	ft_putnbr_fd(42, fd);
-	close(fd);
-	return (0);
-} */
+	int	count;
+
+	count = 0;
+	if (n < 10)
+		count += ft_putchar(n + '0');
+	else if (n > 9)
+	{
+		count += ft_putnbr_unsigned(n / 10);
+		count += ft_putnbr_unsigned(n % 10);
+	}
+	return (count);
+}
