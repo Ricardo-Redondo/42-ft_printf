@@ -6,31 +6,31 @@
 /*   By: rsao-pay <rsao-pay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 17:14:15 by rsao-pay          #+#    #+#             */
-/*   Updated: 2025/11/11 21:10:25 by rsao-pay         ###   ########.fr       */
+/*   Updated: 2025/11/11 22:07:07 by rsao-pay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int possible_args(char c, va_list args)
+int	possible_args(char c, va_list args)
 {
 	int	len;
 
 	len = 0;
 	if (c == 'c')
-		len += ft_putchar((char)va_arg(args, int));
+		len += ft_putchar(va_arg(args, int));
 	else if (c == 's')
 		len += ft_putstr(va_arg(args, char *));
 	else if (c == 'd' || c == 'i')
-		len += ft_putnbr(va_arg(args, int));
+		len += ft_putnbr((long)va_arg(args, int));
 	else if (c == 'u')
 		len += ft_putnbr_unsigned((long)va_arg(args, unsigned int));
 	else if (c == 'p')
-		len += ft_putptr(va_arg(args, void *));
+		len += ft_putptr(va_arg(args, unsigned long long));
 	else if (c == 'x')
-		len += ft_puthex((long)va_arg(args, unsigned int), HEX_low);
+		len += ft_puthex((long)va_arg(args, unsigned int), HEX_LOW);
 	else if (c == 'X')
-		len += ft_puthex((long)va_arg(args, unsigned int), HEX_high);
+		len += ft_puthex((long)va_arg(args, unsigned int), HEX_HIGH);
 	else if (c == '%')
 		len += ft_putchar('%');
 	return (len);
@@ -43,21 +43,16 @@ int	ft_printf(const char *str, ...)
 	va_list	args;
 
 	len = 0;
+	i = -1;
 	if (!str)
 		return (-1);
-	va_start(args, &str);
-	while (str[i])
+	va_start(args, str);
+	while (str[++i])
 	{
-		if (str[i] == "%")
-		{
-			len += possible_args(str[i + 1], args);
-			i++;
-		}
+		if (str[i] == '%')
+			len += possible_args(str[++i], args);
 		else
-		{
-			len += ft_putchar(str[i]);
-			i++;
-		}
+			len += ft_putchar((int)str[i]);
 	}
 	va_end(args);
 	return (len);
