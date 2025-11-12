@@ -6,7 +6,7 @@
 /*   By: rsao-pay <rsao-pay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 16:35:47 by rsao-pay          #+#    #+#             */
-/*   Updated: 2025/11/11 22:11:11 by rsao-pay         ###   ########.fr       */
+/*   Updated: 2025/11/12 10:32:54 by rsao-pay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 # include <stdarg.h>
 # include <unistd.h>
 
+typedef unsigned int		t_ui;
+typedef unsigned long		t_ul;
+typedef unsigned long long	t_ull;
+
 # define HEX_LOW "0123456789abcdef"
 # define HEX_HIGH "0123456789ABCDEF"
 
@@ -23,8 +27,8 @@ int	ft_printf(const char *str, ...);
 int	possible_args(char c, va_list args);
 int	ft_putchar(int c);
 int	ft_putstr(char *str);
-int	ft_puthex(unsigned long n, char *BASE);
-int	ft_putptr(unsigned long long ptr);
+int	ft_puthex(t_ul nb, char *BASE);
+int	ft_putptr(t_ull ptr);
 int	ft_putnbr(long nb);
 int	ft_putnbr_unsigned(long nb);
 

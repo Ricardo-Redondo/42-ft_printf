@@ -6,7 +6,7 @@
 /*   By: rsao-pay <rsao-pay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 17:14:15 by rsao-pay          #+#    #+#             */
-/*   Updated: 2025/11/11 22:07:07 by rsao-pay         ###   ########.fr       */
+/*   Updated: 2025/11/12 10:33:21 by rsao-pay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ int	possible_args(char c, va_list args)
 	else if (c == 'd' || c == 'i')
 		len += ft_putnbr((long)va_arg(args, int));
 	else if (c == 'u')
-		len += ft_putnbr_unsigned((long)va_arg(args, unsigned int));
+		len += ft_putnbr_unsigned((long)va_arg(args, t_ui));
 	else if (c == 'p')
-		len += ft_putptr(va_arg(args, unsigned long long));
+		len += ft_putptr(va_arg(args, t_ull));
 	else if (c == 'x')
-		len += ft_puthex((long)va_arg(args, unsigned int), HEX_LOW);
+		len += ft_puthex((t_ul)va_arg(args, t_ui), HEX_LOW);
 	else if (c == 'X')
-		len += ft_puthex((long)va_arg(args, unsigned int), HEX_HIGH);
+		len += ft_puthex((t_ul)va_arg(args, t_ui), HEX_HIGH);
 	else if (c == '%')
 		len += ft_putchar('%');
 	return (len);

@@ -6,7 +6,7 @@
 /*   By: rsao-pay <rsao-pay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 20:53:19 by rsao-pay          #+#    #+#             */
-/*   Updated: 2025/11/11 21:49:15 by rsao-pay         ###   ########.fr       */
+/*   Updated: 2025/11/12 10:31:06 by rsao-pay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,20 @@ int	ft_putnbr_unsigned(long nb)
 	count = 0;
 	if (nb >= 10)
 	{
-		count += ft_putnbr(nb / 10);
+		count += ft_putnbr_unsigned(nb / 10);
 	}
 	c = '0' + (nb % 10);
 	count += ft_putchar(c);
+	return (count);
+}
+
+int	ft_puthex(t_ul nb, char *BASE)
+{
+	int		count;
+
+	count = 0;
+	if (nb >= 16)
+		count += ft_puthex(nb / 16, BASE);
+	count += ft_putchar(BASE[nb % 16]);
 	return (count);
 }
