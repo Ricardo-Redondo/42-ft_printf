@@ -6,7 +6,7 @@
 /*   By: rsao-pay <rsao-pay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 17:14:15 by rsao-pay          #+#    #+#             */
-/*   Updated: 2025/11/12 10:33:21 by rsao-pay         ###   ########.fr       */
+/*   Updated: 2025/11/12 14:09:02 by rsao-pay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ int	possible_args(char c, va_list args)
 
 int	ft_printf(const char *str, ...)
 {
-	size_t	i;
-	int		len;
 	va_list	args;
+	int		i;
+	int		len;
 
 	len = 0;
 	i = -1;
